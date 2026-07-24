@@ -7,12 +7,17 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_classic.chains.retrieval_qa.base import RetrievalQA
 
 
+
 # Configure page
 st.set_page_config(page_title="PDF RAG", layout="centered")
 st.title("📄 PDF Question Answering")
 
 # API Key input
-GOOGLE_API_KEY = "AIzaSyBkQfOLLFl3tKZmpmQqEtbJ_BDKAJ9AnZY"  # Add your API key here
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
 if not GOOGLE_API_KEY:
     st.warning("Please add your Google API key in the code")

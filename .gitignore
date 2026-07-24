@@ -1,0 +1,28 @@
+# Python
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDFs (don't commit test files)
+*.pdf
+
+# Streamlit
+.streamlit/secrets.toml.DS_Store

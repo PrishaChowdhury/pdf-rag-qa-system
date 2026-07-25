@@ -11,18 +11,19 @@ A Retrieval-Augmented Generation (RAG) system that allows you to ask questions a
 
 ## 🛠️ Tech Stack
 
-- **LLM**: Google Gemini 1.5 Flash
+- **LLM**: Google Gemini 2.5 Flash
 - **Embeddings**: HuggingFace (sentence-transformers)
 - **Vector Database**: FAISS
 - **Framework**: LangChain
 - **UI**: Streamlit
+- **Containerization**: Docker
 
 ## 📦 Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/rag-project.git
-cd rag-project
+git clone https://github.com/PrishaChowdhury/pdf-rag-qa-system.git
+cd pdf-rag-qa-system
 ```
 
 2. Create virtual environment:
@@ -62,6 +63,30 @@ streamlit run app.py
 3. Ask questions about the document
 4. Get AI-powered answers!
 
+## 🐳 Running with Docker
+
+Build and run the app in a container instead of a local virtual environment:
+
+```bash
+docker build -t pdf-rag-qa-system .
+docker run -e GOOGLE_API_KEY=your_key -p 8501:8501 pdf-rag-qa-system
+```
+
+Then open `http://localhost:8501` in your browser.
+
+## 📊 Retrieval Evaluation
+
+Retrieval quality is benchmarked using NDCG (Normalized Discounted Cumulative Gain) across three embedding strategies: `all-MiniLM-L6-v2`, `all-mpnet-base-v2`, and Google's `gemini-embedding-001`.
+
+- `eval_ndcg.py` — a synthetic test set of 7 clearly distinct topics, used as a sanity check on the evaluation harness itself.
+- `eval_ndcg_dbpedia.py` — a harder benchmark using a real query and real relevance judgments from the [DBpedia-Entity v2](https://github.com/iai-group/DBpedia-Entity) test collection (Hasibi et al., SIGIR 2017), where candidate documents share a domain and are genuinely difficult to tell apart.
+
+Full results are in [`eval_results.md`](./eval_results.md). Run either script yourself with:
+
+```bash
+python eval_ndcg_dbpedia.py
+```
+
 ## 🌐 Deployment
 
 Deploy to Streamlit Cloud:
@@ -77,4 +102,4 @@ MIT License
 
 ## 👤 Author
 
-Prisha Chowdhury - [@yPrishaChowdhury](https://github.com/PrishaChowdhury)
+Prisha Chowdhury - [@PrishaChowdhury](https://github.com/PrishaChowdhury)
